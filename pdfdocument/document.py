@@ -329,6 +329,11 @@ class PDFDocument(object):
         self.style.table = self.style.tableBase + (
             ("ALIGN", (1, 0), (-1, -1), "RIGHT"),
         )
+        
+        self.style.tableBottom = self.style.tableBase + (
+            ("ALIGN", (1, 0), (-1, -1), "CENTER"),
+            ("ALIGN", (2, 0), (-1, -1), "RIGHT"),
+        )
 
         self.style.tableLLR = self.style.tableBase + (
             ("ALIGN", (2, 0), (-1, -1), "RIGHT"),
@@ -576,7 +581,7 @@ class PDFDocument(object):
         obj._doc = self.doc
         self.story.append(obj)
 
-        self.story.append(BottomTable(data, columns, style=style or self.style.table))
+        self.story.append(BottomTable(data, columns, style=style or self.style.tableBottom))
 
     def append(self, data):
         self.story.append(data)
